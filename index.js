@@ -66,7 +66,7 @@ function typeOf(value) {
  * 
  * @param { array }: Function takes in an array
  * @param { number }: Function takes in a number
- * @return { any datatype }: Function returns first element of array. 
+ * @return { any datatype }: Function returns first x number of elements of the array determined by input number. 
  */
 
 function first(array, number) {
@@ -95,7 +95,7 @@ function first(array, number) {
  * 
  * @param { array }: Function takes in an array parameter.  
  * @param {number}: Function takes in a number parameter. 
- * @return {any datatype}: Function  
+ * @return {any datatype}: Function returns last x number of elements of the array determined by input number.
  */
 
 function last(array, number) {
@@ -148,7 +148,7 @@ function indexOf(array, value) {
  * 
  * @param { array }: Function takes in an array parameter. 
  * @param {any datatype}: Function takes in parameter of any datatype.
- * @return {boolean}: Function returns true or false. 
+ * @return {boolean}: Function returns true if value is found within the array. Otherwise, returns false. 
  */
 
 function contains(array, value) {
@@ -234,8 +234,8 @@ function reject(array, func) {
  * 
  * @param { array }: Function takes an array to iterate over. 
  * @param { function }: Function to be applied to each element in the array. 
- * @return { array }: Function returns new array containing elements from input 
- * array, separated into sub arrays. 
+ * @return { array }: Function returns new array containing a sub array with true function results
+ * and another sub array with false function results.  
  */
 
 function partition(array, func) {
@@ -309,11 +309,12 @@ function pluck(array, property) {
 
  /**
  * every: Function determines if all elements in the collection pass the specified 
- * function's condition. Returns a boolean result. 
+ * function's condition. Returns true if every element in collection passes the test function.
+ * If one element fails the test function, the every function will return false. 
  * 
  * @param { Array or Object }collection: Function takes an array or object. 
  * @param { function }: Function to be applied to each value in the collection. 
- * @return { boolean }: Returns true or false. 
+ * @return { boolean }: Returns true if every element in collection passes test function, false otherwise.  
  */
 
 function every(collection, func) {
