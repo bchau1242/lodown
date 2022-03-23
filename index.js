@@ -37,8 +37,8 @@ function identity(value) {
 module.exports.identity = identity;
 
 /**
- * typeOf: Takes in any value, determines what type the value is and return 
- * the type as a string.  
+ * typeOf: Takes in any value and returns a string indicating the datatype of 
+ * the value.  
  * 
  * @param { any datatype }: Function takes a single parameter of any datatype.
  * @return {string}: Function returns string of the value datatype. 
@@ -61,7 +61,8 @@ function typeOf(value) {
  module.exports.typeOf = typeOf;
 
  /**
- * first: Designed to take an array and return its first element.    
+ * first: Designed to take an array to iterate over and return the 
+ * first element or elements of array depending on number input provided.   
  * 
  * @param { array }: Function takes in an array
  * @param { number }: Function takes in a number
@@ -89,7 +90,8 @@ function first(array, number) {
  module.exports.first = first;
 
 /**
- * last: Designed to take an array and return its last element.  
+ * last: Designed to take an array to iterate over and return the 
+ * last element or elements of array depending on number input provided.    
  * 
  * @param { array }: Function takes in an array parameter.  
  * @param {number}: Function takes in a number parameter. 
@@ -118,8 +120,10 @@ function last(array, number) {
  module.exports.last = last;
 
  /**
- * indexOf: Function loops over an array and matches the value to an element in the array.
- * When match is found, function returns the index of matched element.   
+ * indexOf: Function iterates over an array and returns the first index at which
+ * the given value matches an element in the array. Returns -1 if value does not 
+ * match any element in the array.
+ *   
  * 
  * @param { array }: Function takes in an array parameter. 
  * @param {any datatype}: Function takes in parameter of any datatype.
@@ -157,15 +161,17 @@ function contains(array, value) {
  module.exports.contains = contains;
 
 /**
- * unique:  
+ * unique: Function iterates through an array and applies a function to each element. 
+ * Function tests elements to check if an element mataches another element within the array. 
+ * Returns a new array with no duplicates. 
  * 
  * @param { array }: Function takes in an array parameter. 
- * @return {index}: Function returns the index of given value in the array.     
+ * @return {index}: Function returns new array with no duplicates.     
  */
 
 function unique(array) {
-    let uniqueChars = array.filter((c, index) => {
-        return _.indexOf(array, c) === index;
+    let uniqueChars = _.filter(array, function(char, index) {
+        return _.indexOf(array, char) === index;
     });
     return uniqueChars;
 }
@@ -174,13 +180,13 @@ function unique(array) {
  module.exports.unique = unique;
 
  /**
- * filter:  
+ * filter: Function iterates through an array and applies a function to each element. 
+ * If the result of the function returns true, the element will be pushed to a new array.
+ * Returns the new array after iterating through all elements.  
  * 
  * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param {Function}: The Function to be applied to each value in the array. 
+ * @return { array }: A new array containing all elements that pass the Function. 
  */
 
 function filter(array, func) {
@@ -197,13 +203,14 @@ function filter(array, func) {
  module.exports.filter = filter;
 
 /**
- * reject:  
+ * reject: Function iterates through an array and applies a function to each element. 
+ * If the result of the function returns false, the element will be pushed to a new array.
+ * Returns the new array after iterating through all elements.  
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { array }: Function takes an array to iterate over. 
+ * @param { function }: Function to be applied to each element in the array. 
+ * @return { array }: Function returns new array containing all elements that 
+ * return false after running function. 
  */
 
 function reject(array, func) {
@@ -220,13 +227,15 @@ function reject(array, func) {
  module.exports.reject = reject;
 
  /**
- * partition:  
+ * partition: Function iterates through an array and applies a function on each element. 
+ * Elements that return something truthy when passed through function are pushed to one sub array.
+ * Elements that return something falsy when passed through function are pushed to another sub array.
+ * Returns a new array with two sub arrays. 
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { array }: Function takes an array to iterate over. 
+ * @param { function }: Function to be applied to each element in the array. 
+ * @return { array }: Function returns new array containing elements from input 
+ * array, separated into sub arrays. 
  */
 
 function partition(array, func) {
@@ -245,13 +254,15 @@ function partition(array, func) {
  module.exports.partition = partition;
 
 /**
- * map:  
+ * map: Function takes an array or object to iterate over and applies a function
+ * to each element or property. Returns a new array containing the result of the 
+ * function applied to each element or property. 
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
+ * @param { Array or Object }collection: The collection over which to iterate. 
+ * @param {Function}action: The Function to be applied to each value in the 
  * collection
- * @return { value }:
+ * @return { array }: Returns a new array containing the result of the function 
+ * applied to each element or property.  
  */
 
 function map(collection, func) {
@@ -272,13 +283,14 @@ function map(collection, func) {
  module.exports.map = map;
 
  /**
- * pluck:  
+ * pluck: Function takes in an array to iterate over and applies a function on each element. 
+ * Iterates over each object in array and if property matches object key, function will add
+ * property value to new array. Returns new array with property values.  
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { array }: Function takes an array of objects to iterate over. 
+ * @param { property }: Function takes a property to match a key in an object within the array.  
+ * @return { array }: Function returns an array containing the value of property 
+ * for every element in array. 
  */
 
 function pluck(array, property) {
@@ -296,13 +308,12 @@ function pluck(array, property) {
  module.exports.pluck = pluck;
 
  /**
- * every:  
+ * every: Function determines if all elements in the collection pass the specified 
+ * function's condition. Returns a boolean result. 
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { Array or Object }collection: Function takes an array or object. 
+ * @param { function }: Function to be applied to each value in the collection. 
+ * @return { boolean }: Returns true or false. 
  */
 
 function every(collection, func) {
@@ -340,13 +351,14 @@ function every(collection, func) {
  module.exports.every = every;
 
  /**
- * some:  
+ * some: Function tests whether at least one element or property in the collection
+ * satisfies the specified function's condition. If it finds an element or property 
+ * in the collection for which the function returns true, it return true; otherwise, 
+ * it returns false. 
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { Array or Object }: Function takes an array or object. 
+ * @param { function }: Function to be applied to each value in the collection. 
+ * @return { boolean }: Returns true or false. 
  */
 
 function some(collection, func) {
@@ -384,13 +396,14 @@ function some(collection, func) {
  module.exports.some = some;
 
  /**
- * reduce:  
+ * reduce: Function takes an array to iterate over. Executes a function using the 
+ * previous value, current value and initial value(if provided)to compute and returns 
+ * an updated previous value. 
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { array }: Function takes an array to iterate over. 
+ * @param { function }: Function to be applied to each element in the array. 
+ * @param { seed }: Function takes a seed as initial value to accumulate. 
+ * @return { value }: Function returns a single value. 
  */
 
 function reduce(array, func, seed) {
@@ -413,13 +426,12 @@ function reduce(array, func, seed) {
  module.exports.reduce = reduce;
 
 /**
- * extend:  
+ * extend: Function takes in two or more objects and copies all properties 
+ * and its values into one object then returns that object. 
  * 
- * @param { array }: Function takes a single parameter of any datatype.
- * @param { array }:
- * @return { array }: The Function to be applied to each value in the 
- * collection
- * @return { value }:
+ * @param { array }: Function takes two or more objects. 
+ * @return { array }: Function returns a single object containing copies 
+ * of input object's properties and values. 
  */
 
 function extend(...inputs) {
